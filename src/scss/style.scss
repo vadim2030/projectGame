@@ -96,7 +96,7 @@
    align-items: normal;
  }
 
- .btn:link,
+ /*.btn:link,
  .btn:visited {
    text-transform: capitalize;
    text-decoration: none;
@@ -150,9 +150,94 @@
  .btn-animated {
    animation: moveInBottom 5s ease-out;
    animation-fill-mode: backwards;
+ }*/
+
+ //////////////////
+
+
+ .modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   padding: 40px 10px 40px 10px;
+   background-color: rgba(0, 0, 0, 0.7) !important;
+   overflow: hidden;
+   overflow-y: auto;
+   z-index: 999;
+   opacity: 0;
+   transition: opacity 0.3s;
  }
 
- .border {
+ .ReactModal__Overlay--after-open {
+   opacity: 1;
+ }
+
+ .ReactModal__Overlay--before-close {
+   opacity: 0;
+ }
+
+ .modal-overlay::before,
+ .modal-overlay::after {
+   content: "";
+   display: block;
+   height: 1px;
+   flex-grow: 1;
+ }
+
+ .modal-content {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    width: 100%;
-   border: 1px solid black;
+   max-width: 40.625rem;
+   padding: 60px 20px 50px 20px;
+   background-color: #fff;
+   border-radius: 30px;
+   filter: drop-shadow(0 0 10px rgba(255, 103, 0, 0.7));
+   transform: translateY(50px);
+   transition: transform 0.3s;
+ }
+
+ .ReactModal__Content--after-open {
+   transform: translateY(0);
+ }
+
+ .ReactModal__Content--before-close {
+   transform: translateY(50px);
+ }
+
+ .modal-close-button {
+   position: absolute;
+   top: 20px;
+   right: 26px;
+   width: 30px;
+   height: 30px;
+   stroke: #a4a4a4;
+   transition: stroke 0.3s;
+ }
+
+ .modal-close-button:hover {
+   stroke: #ff0000;
+ }
+
+ .modal-show-button {
+   margin: 0.5rem;
+   width: 150px;
+   height: 50px;
+   border-radius: 0.4375rem;
+   background-color: #ff6700;
+   font-size: 18px;
+   color: #ffffff;
+   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.25);
+   transition: background-color 0.3s;
+ }
+
+ .modal-show-button:hover {
+   background-color: #c24e00;
  }
