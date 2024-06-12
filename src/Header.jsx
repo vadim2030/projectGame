@@ -1,25 +1,65 @@
-import logo from '../public/vite.svg';
-import Time from './Time.jsx';
-import { NavLink } from 'react-router-dom';
+import logo from "../public/vite.svg";
+import Time from "./Time.jsx";
+import FormRegistr from "./FormRegistr.jsx";
+import Login from "./Login.jsx";
 import "./scss/style.scss";
+import React, { useState } from "react";
+import Modal from "react-modal";
+
 
 const Header = () => {
+  const [modalLoginOpen, setModalLoginOpen] = useState(false);
+  const [modalFormRegistrOpen, setModalFormRegistrOpen] = useState(false);
+
   return (
-    <header className='header'>
-      <img src={logo} alt={'Result'} />
+    <header className="header">
+      <img src={logo} alt={"Result"} />
       <div>
-        <NavLink className='btn btn-white btn-animate' to='registr'>
-          Sign Up
-        </NavLink>
-        <NavLink className='btn btn-white btn-animate' to='login'>
+        <button
+          className="modal-show-button header-botton"
+          onClick={() => setModalLoginOpen(true)}
+        >
           Log In
-        </NavLink>
+        </button>
+        <Modal
+          isOpen={modalLoginOpen}
+          overlayClassName={"modal-overlay"}
+          className={"modal-content"}
+          onRequestClose={() => setModalLoginOpen(false)}
+          closeTimeoutMS={300}
+          ariaHideApp={false}
+        >
+          <button className="modal-close-button" onClick={() => setModalLoginOpen(false)}>
+            X
+          </button>
+
+          <Login />
+        </Modal>
+
+        <button
+          className="modal-show-button header-botton"
+          onClick={() => setModalFormRegistrOpen(true)}
+        >
+          Sign Up
+        </button>
+        <Modal
+          isOpen={modalFormRegistrOpen}
+          overlayClassName={"modal-overlay"}
+          className={"modal-content"}
+          onRequestClose={() => setModalFormRegistrOpen(false)}
+          closeTimeoutMS={300}
+          ariaHideApp={false}
+        >
+          <button className="modal-close-button" onClick={() => setModalFormRegistrOpen(false)}>
+            X
+          </button>
+
+          <FormRegistr />
+        </Modal>
       </div>
       <Time />
-    </header >
-
-  )
-
-}
+    </header>
+  );
+};
 
 export default Header;
